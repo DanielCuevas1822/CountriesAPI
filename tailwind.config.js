@@ -12,6 +12,7 @@ module.exports = {
       minHeight: {
         header: "10vh",
         main: "90vh",
+        card: "200px",
       },
       fontFamily: {
         nunito: ["Nunito Sans"],
