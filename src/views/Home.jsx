@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../components/Card";
-import SearchFilter from "../views/SingleCountry";
+import SearchFilter from "../components/SearchFIlter";
 
 const Home = () => {
   return (

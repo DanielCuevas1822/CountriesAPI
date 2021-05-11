@@ -1,5 +1,5 @@
+import { Route, Switch } from "react-router";
 import Header from "./components/Header";
-import SearchFilter from "./components/SearchFIlter";
 import Home from "./views/Home";
 import SingleCountry from "./views/SingleCountry";
 
@@ -8,7 +8,14 @@ function App() {
     <div className="App">
       <Header />
       <main className="bg-dark_main">
-        <SingleCountry />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/single-country/:name">
+            <SingleCountry />
+          </Route>
+        </Switch>
       </main>
     </div>
   );
