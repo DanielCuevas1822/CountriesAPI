@@ -10,7 +10,11 @@ module.exports = {
         light_main: "#fafafa",
       },
       minHeight: {
-        header: "6vh",
+        header: "10vh",
+        main: "90vh",
+      },
+      fontFamily: {
+        nunito: ["Nunito Sans"],
       },
     },
   },
