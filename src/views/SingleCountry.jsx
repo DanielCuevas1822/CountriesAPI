@@ -1,64 +1,120 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowNarrowLeftIcon } from "@heroicons/react/solid";
+import { useHistory, useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-const SingleCountry = () => {
+const SingleCountry = (props) => {
+  const { countries } = props;
+  const { name } = useParams();
+  const [countryInfo, setCOuntryInfo] = useState([]);
+  const history = useHistory();
+  const handleBack = () => {
+    history.push("/");
+  };
+
+  useEffect(() => {
+    setCOuntryInfo(
+      countries.filter(
+        (item) => item.name.toLowerCase().replace(/\s/g, "") === name
+      )
+    );
+  }, [countries, name]);
+
   return (
     <div className="container mx-auto py-5 px-4 min-h-main text-white font-nunito">
       <div className="my-10">
-        <button className="flex items-center bg-dark_header px-8 py-2 text-white font-nunito font-light">
+        <button
+          onClick={handleBack}
+          className="flex items-center bg-dark_header px-8 py-2 text-white font-nunito font-light"
+        >
           <ArrowNarrowLeftIcon className="h-5 y-5 pr-2" />
           Back
         </button>
       </div>
+      {countryInfo.length > 0 ? (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div>
+            <img src={countryInfo[0].flag} alt="flag" />
+          </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <div>
-          <img src="https://restcountries.eu/data/deu.svg" alt="flag" />
-        </div>
-
-        <div className="flex items-center justify-center">
-          <div className="w-full lg:w-4/5">
-            <p className="font-bold text-3xl">Belgium</p>
-            <div className="flex justify-between  my-10">
-              <div>
-                <p className="font-semibold">
-                  Native Name: <span className="font-light">Belgie</span>
-                </p>
-                <p className="font-semibold">
-                  Population: <span className="font-light">11,319,511</span>
-                </p>
-                <p className="font-semibold">
-                  Region: <span className="font-light">Europe</span>
-                </p>
-                <p className="font-semibold">
-                  Sub Region: <span className="font-light">Western Europe</span>
-                </p>
-                <p className="font-semibold">
-                  Capital: <span className="font-light">Brussels</span>
-                </p>
+          <div className="flex items-center justify-center">
+            <div className="w-full lg:w-4/5">
+              <p className="font-bold text-3xl">{countryInfo[0].name}</p>
+              <div className="flex justify-between  my-10">
+                <div>
+                  <p className="font-semibold">
+                    Native Name:{" "}
+                    <span className="font-light">
+                      {countryInfo[0].nativeName}
+                    </span>
+                  </p>
+                  <p className="font-semibold">
+                    Population:{" "}
+                    <span className="font-light">
+                      {countryInfo[0].population}
+                    </span>
+                  </p>
+                  <p className="font-semibold">
+                    Region:{" "}
+                    <span className="font-light">{countryInfo[0].region}</span>
+                  </p>
+                  <p className="font-semibold">
+                    Sub Region:{" "}
+                    <span className="font-light">
+                      {countryInfo[0].subregion}
+                    </span>
+                  </p>
+                  <p className="font-semibold">
+                    Capital:{" "}
+                    <span className="font-light">{countryInfo[0].capital}</span>
+                  </p>
+                </div>
+                <div>
+                  <p className="font-semibold">
+                    Top Level Domain:{" "}
+                    <span className="font-light">
+                      {countryInfo.topLevelDomain}
+                    </span>
+                  </p>
+                  <p className="font-semibold">
+                    Currencies:{" "}
+                    <span className="font-light">
+                      {countryInfo[0].currencies[0].name},
+                      {countryInfo[0].currencies[0].symbol}
+                    </span>
+                  </p>
+                  <p className="font-semibold">
+                    Languages:{" "}
+                    <span className="font-light">
+                      {countryInfo[0].languages.map((item) => item.name)}
+                    </span>
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="font-semibold">
-                  Top Level Domain: <span className="font-light">.be</span>
-                </p>
-                <p className="font-semibold">
-                  Currencies: <span className="font-light">Euro</span>
-                </p>
-                <p className="font-semibold">
-                  Languages:{" "}
-                  <span className="font-light">Dutch,French,German</span>
-                </p>
+              <div className="w-full">
+                <p className="font-semibold mb-2">Border Countries:</p>
+                {countryInfo[0].borders.map((item, index) => {
+                  let borders = countries.filter(
+                    (country) => country.alpha3Code === item
+                  );
+                  return (
+                    <button key={index} className="mr-1 mb-3">
+                      <Link
+                        to={`/single-country/${borders[0].name
+                          .toLowerCase()
+                          .replace(/\s/g, "")}`}
+                        className="bg-dark_header py-1 px-3 "
+                      >
+                        {borders[0].name}
+                      </Link>
+                    </button>
+                  );
+                })}
               </div>
-            </div>
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
-              <p className="font-semibold">Border Countries:</p>
-              <button className="bg-dark_header py-1 px-3 my-3">France</button>
-              <button className="bg-dark_header py-1 px-3 my-3">Germany</button>
-              <button className="bg-dark_header py-1 px-3 my-3">Netherlands</button>
             </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };
