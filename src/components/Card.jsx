@@ -6,11 +6,15 @@ const Card = (props) => {
   return (
     <Link to={`/single-country/${name.toLowerCase().replace(/\s/g, "")}`}>
       <div className="card flex justify-center">
-        <div className="bg-dark_header w-3/4 lg:w-full">
+        <div
+          className={`${
+            props.isDarkMode ? "bg-dark_header" : "bg-light_header"
+          }  w-3/4 lg:w-full`}
+        >
           <div className="min-h-card">
             <img src={flag} alt="flag" />
           </div>
-          <div className="p-3 text-white">
+          <div className="p-3">
             <p className="font-nunito font-bold">{name}</p>
             <p className="font-nunito font-semibold">
               Population: <span className="font-light">{population}</span>

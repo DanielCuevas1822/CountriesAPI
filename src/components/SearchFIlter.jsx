@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SearchIcon } from "@heroicons/react/solid";
 
 const SearchFilter = (props) => {
-  const { handleFilter } = props;
+  const { handleFilter, isDarkMode } = props;
   const [filters, setFilters] = useState({
     country: "",
     region: "",
@@ -18,7 +18,11 @@ const SearchFilter = (props) => {
     handleFilter(filters.country, filters.region);
   };
   return (
-    <div className="container mx-auto px-4">
+    <div
+      className={`${
+        isDarkMode ? "text-white" : "text-black"
+      } container mx-auto px-4`}
+    >
       <form>
         <div className="grid grid-cols-1">
           <div className="mt-5 flex flex-col md:flex-row justify-center">
@@ -27,13 +31,17 @@ const SearchFilter = (props) => {
               name="country"
               id="country"
               placeholder="Search for a country..."
-              className="py-3 pl-3 mr-2 mt-2 text-white bg-dark_header font-nunito"
+              className={`${
+                isDarkMode ? "bg-dark_header" : "bg-light_header"
+              } py-3 pl-3 mr-2 mt-2 font-nunito`}
               value={filters.country}
               onChange={handleChange}
             />
 
             <select
-              className="text-white bg-dark_header mr-2 mt-2 py-3 px-4 font-nunito font-light"
+              className={`${
+                isDarkMode ? "bg-dark_header" : "bg-light_header"
+              } mr-2 mt-2 py-3 px-4 font-nunito font-light`}
               name="region"
               id="region"
               value={filters.region}
@@ -50,23 +58,33 @@ const SearchFilter = (props) => {
 
             <button
               onClick={handleClick}
-              className="py-3 text-white bg-dark_header mt-2 w-3/12 md:w-20"
+              className={`${
+                isDarkMode ? "bg-dark_header" : "bg-light_header"
+              } py-3 mt-2 w-3/12 md:w-20`}
               type="submit"
             >
-              <SearchIcon className="text-white h-5 w-20" />
+              <SearchIcon className=" h-5 w-20" />
             </button>
           </div>
         </div>
       </form>
-      <div className="flex text-white font-nunito mt-3">
+      <div className="flex  font-nunito mt-3">
         <p className="font-semibold mr-2">Filtering by:</p>
         {filters.country !== "" ? (
-          <p className="bg-dark_header mr-2 px-2 rounded-sm">
+          <p
+            className={`${
+              isDarkMode ? "bg-dark_header" : "bg-light_header"
+            } mr-2 px-2 rounded-sm`}
+          >
             {filters.country}
           </p>
         ) : null}
         {filters.region !== "" ? (
-          <p className="bg-dark_header mr-2 px-2 rounded-sm">
+          <p
+            className={`${
+              isDarkMode ? "bg-dark_header" : "bg-light_header"
+            } mr-2 px-2 rounded-sm`}
+          >
             {filters.region}
           </p>
         ) : null}

@@ -8,6 +8,7 @@ import SingleCountry from "./views/SingleCountry";
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [isDarkMode, setDarkMode] = useState(false);
   useEffect(() => {
     axios
       .get("https://restcountries.eu/rest/v2/all")
@@ -18,17 +19,20 @@ function App() {
         console.log(error);
       });
   }, []);
+  const handleDark = () => {
+    setDarkMode(!isDarkMode);
+  };
   return (
     <div className="App">
-      <Header />
+      <Header handleDark={handleDark} isDarkMode={isDarkMode} />
       {countries.length > 0 ? (
-        <main className="bg-dark_main">
+        <main className={isDarkMode ? "bg-dark_main" : "bg-light_main"}>
           <Switch>
             <Route exact path="/">
-              <Home countries={countries} />
+              <Home countries={countries} isDarkMode={isDarkMode} />
             </Route>
             <Route exact path="/single-country/:name">
-              <SingleCountry countries={countries} />
+              <SingleCountry countries={countries} isDarkMode={isDarkMode} />
             </Route>
           </Switch>
         </main>

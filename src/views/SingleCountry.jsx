@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 const SingleCountry = (props) => {
-  const { countries } = props;
+  const { countries, isDarkMode } = props;
   const { name } = useParams();
   const [countryInfo, setCOuntryInfo] = useState([]);
   const history = useHistory();
@@ -21,11 +21,17 @@ const SingleCountry = (props) => {
   }, [countries, name]);
 
   return (
-    <div className="container mx-auto py-5 px-4 min-h-main text-white font-nunito">
+    <div
+      className={`${
+        isDarkMode ? "text-white" : "text-black"
+      } container mx-auto py-5 px-4 min-h-main font-nunito`}
+    >
       <div className="my-10">
         <button
           onClick={handleBack}
-          className="flex items-center bg-dark_header px-8 py-2 text-white font-nunito font-light"
+          className={`${
+            isDarkMode ? "bg-dark_header" : "bg-light_header"
+          } flex items-center px-8 py-2 font-nunito font-light`}
         >
           <ArrowNarrowLeftIcon className="h-5 y-5 pr-2" />
           Back
@@ -103,7 +109,9 @@ const SingleCountry = (props) => {
                         to={`/single-country/${borders[0].name
                           .toLowerCase()
                           .replace(/\s/g, "")}`}
-                        className="bg-dark_header py-1 px-3 "
+                        className={`${
+                          isDarkMode ? "bg-dark_header" : "bg-light_header"
+                        } py-1 px-3 `}
                       >
                         {borders[0].name}
                       </Link>

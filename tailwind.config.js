@@ -7,7 +7,7 @@ module.exports = {
         dark_header: "#2b3743",
         dark_main: "#212e37",
         light_header: "#ffffff",
-        light_main: "#fafafa",
+        light_main: "#eeeeee",
       },
       minHeight: {
         header: "10vh",
