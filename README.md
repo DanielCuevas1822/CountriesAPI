@@ -1,6 +1,6 @@
 # CountriesAPI
 
-_CountriesAPI is a web application built in React Js. In this web application you can see all the countries and you can search by name or by region. It was a [challenge proposed](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca) by the Frontend Mentor site_
+_CountriesAPI is a web application built in React Js. In this web application you can see all the countries and you can search by name or by region. It was a [challenge proposed](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca) by the Frontend Mentor site._
 
 _Concepts learned in this proyect:_
 
@@ -57,5 +57,9 @@ $ npm start
 # URL 📌
 
 _https://danielcuevas1822.github.io/CountriesAPI/_
+
+# Thanks 🎁
+
+_https://www.frontendmentor.io/_
 
 _With ❤️ DanielCuevas1822_
