@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = (props) => {
-  const { name, population, region, capital, flag } = props.info;
+  const { name, population, region, capital, flags } = props.info;
   return (
     <Link to={`/single-country/${name.toLowerCase().replace(/\s/g, "")}`}>
       <div className="card flex justify-center">
@@ -12,7 +12,7 @@ const Card = (props) => {
           }  w-3/4 lg:w-full`}
         >
           <div className="min-h-card">
-            <img src={flag} alt="flag" />
+            <img src={flags[0]} alt="flag" />
           </div>
           <div className="p-3">
             <p className="font-nunito font-bold">{name}</p>
