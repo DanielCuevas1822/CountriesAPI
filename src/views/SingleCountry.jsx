@@ -40,7 +40,7 @@ const SingleCountry = (props) => {
       {countryInfo.length > 0 ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <div>
-            <img src={countryInfo[0].flag} alt="flag" />
+            <img src={countryInfo[0].flags[0]} alt="flag" />
           </div>
 
           <div className="flex items-center justify-center">
